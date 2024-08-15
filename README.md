@@ -1,7 +1,7 @@
 This is my first game ever made, most of it is just hardcoded, but as someone who published the same game a lot of times says "it just works"
 There is no comments on the code because i don't know how to properly do it yet;
 
-Default port is 5008, game will try to port map with upnp a new port which you can choose in the start menu, but if you does not have upnp on in your router it will only work locally;
+Default port is 5008, game will try to port map with upnp a new port which you can choose in the start menu, but if you does not have upnp on in your router it will only work locally, or you can enter as client and let some friend host;
 
 Host starts as player 2;
 
