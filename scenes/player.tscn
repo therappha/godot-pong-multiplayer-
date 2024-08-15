@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf5syf0ni763l"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_vyqmx"]
+[ext_resource type="Texture2D" uid="uid://dn0fqxja7ah7e" path="res://assets/playersprite.png" id="2_1pkxn"]
+[ext_resource type="FontFile" uid="uid://cqvr754vycuvy" path="res://assets/pixel_font.ttf" id="3_0ssg6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84jl0"]
+size = Vector2(20, 120)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_23wm6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxfm8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21f65"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee3wn"]
+
+[node name="Player" type="StaticBody2D"]
+z_index = 5
+position = Vector2(50, 324)
+collision_layer = 4
+script = ExtResource("1_vyqmx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_84jl0")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_23wm6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(10, 0)
+texture = ExtResource("2_1pkxn")
+
+[node name="chat_box" type="LineEdit" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -104.0
+offset_right = 61.0
+offset_bottom = -70.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(0.976469, 0.976469, 0.976469, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mxfm8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_21f65")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ee3wn")
+placeholder_text = "type..."
+expand_to_text_length = true
+caret_blink = true
+
+[node name="chat_text" type="Label" parent="."]
+visible = false
+offset_left = 70.0
+offset_top = -147.0
+offset_right = 470.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_0ssg6")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="chat_text2" type="Label" parent="."]
+visible = false
+offset_left = -493.0
+offset_top = -153.0
+offset_right = -93.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("3_0ssg6")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="chat_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="text_submitted" from="chat_box" to="." method="_on_chat_box_text_submitted"]
+[connection signal="timeout" from="chat_timer" to="." method="_on_chat_timer_timeout"]

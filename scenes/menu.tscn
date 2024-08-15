@@ -1,0 +1,217 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnyae82otuxg7"]
+
+[ext_resource type="Texture2D" uid="uid://c0hwfbqvi4k7p" path="res://assets/Bg.png" id="1_uvyap"]
+[ext_resource type="FontFile" uid="uid://cqvr754vycuvy" path="res://assets/pixel_font.ttf" id="2_td1ec"]
+[ext_resource type="Texture2D" uid="uid://n03hmo07dfu8" path="res://assets/ballsprite.png" id="3_7xqxm"]
+[ext_resource type="Script" path="res://scripts/Network.gd" id="3_e72r5"]
+[ext_resource type="PackedScene" uid="uid://c8vn0cfw1isrj" path="res://scenes/background_music.tscn" id="4_qqv50"]
+[ext_resource type="AudioStream" uid="uid://cardvgqsurwoi" path="res://assets/countdown-sound-effect-8-bit-151797.mp3" id="5_r0wlg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h48ot"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_daawm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rklhv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yle73"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvreg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqtxw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trocf"]
+
+[node name="Menu" type="CanvasLayer"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(1.152, 1.15098)
+texture = ExtResource("1_uvyap")
+centered = false
+
+[node name="LabelTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Start_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Host" type="Button" parent="." groups=["menubuttons"]]
+offset_left = 68.0
+offset_top = 252.0
+offset_right = 248.0
+offset_bottom = 370.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.707967, 0.707967, 0.707967, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h48ot")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h48ot")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h48ot")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h48ot")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h48ot")
+text = "Host
+"
+
+[node name="StartGame" type="Button" parent="."]
+visible = false
+offset_left = 207.0
+offset_top = 290.0
+offset_right = 950.0
+offset_bottom = 657.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.709804, 0.709804, 0.709804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxEmpty_daawm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_daawm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_daawm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_daawm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_daawm")
+text = "Start"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("../Network")
+
+[node name="Join" type="Button" parent="." groups=["menubuttons"]]
+offset_left = 937.0
+offset_top = 425.0
+offset_right = 1114.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.709804, 0.709804, 0.709804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rklhv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_yle73")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xvreg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_eqtxw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trocf")
+text = "Join
+"
+
+[node name="Network" type="Node2D" parent="."]
+script = ExtResource("3_e72r5")
+
+[node name="StartingGameLabel" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 541.0
+offset_right = 1148.0
+offset_bottom = 641.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="Game Label" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 74.0
+offset_right = 1160.0
+offset_bottom = 174.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 50
+text = "PONG MULTIPLAYER "
+horizontal_alignment = 1
+
+[node name="Game Label" type="Label" parent="Game Label"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 71.0
+offset_right = 1347.0
+offset_bottom = 171.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 30
+text = "Win at 6 points
+"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -105.0
+offset_right = -147.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.994486, 0.824617, 0.842622, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(535, 310)
+scale = Vector2(3, 3)
+texture = ExtResource("3_7xqxm")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 209.0
+offset_top = -21.0
+offset_right = 229.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.994486, 0.824617, 0.842622, 1)
+
+[node name="Ipaddress" type="LineEdit" parent="." groups=["menubuttons"]]
+offset_left = 409.0
+offset_top = 449.0
+offset_right = 929.0
+offset_bottom = 519.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(0.709804, 0.709804, 0.709804, 1)
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Leave Blank for localhost"
+alignment = 1
+
+[node name="Port" type="LineEdit" parent="." groups=["menubuttons"]]
+offset_left = 65.0
+offset_top = 353.0
+offset_right = 245.0
+offset_bottom = 417.0
+theme_override_colors/font_placeholder_color = Color(0.709804, 0.709804, 0.709804, 1)
+theme_override_fonts/font = ExtResource("2_td1ec")
+placeholder_text = "5008"
+alignment = 1
+
+[node name="Game Label2" type="Label" parent="."]
+offset_left = -234.0
+offset_top = 426.0
+offset_right = 563.0
+offset_bottom = 477.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_td1ec")
+theme_override_font_sizes/font_size = 15
+text = "Game will try to map
+ upnp at port
+default: 5008"
+horizontal_alignment = 1
+
+[node name="BackgroundMusic" parent="." instance=ExtResource("4_qqv50")]
+volume_db = -0.06
+
+[node name="countdownsong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_r0wlg")
+volume_db = 9.333
+
+[connection signal="timeout" from="Start_timer" to="Network" method="_on_start_timer_timeout"]
+[connection signal="pressed" from="Host" to="Network" method="_on_host_pressed"]
+[connection signal="pressed" from="StartGame" to="Network" method="_on_start_game_pressed"]
+[connection signal="pressed" from="Join" to="Network" method="_on_join_pressed"]
