@@ -7,6 +7,5 @@ Host starts as player 2;
 
 To enter the game you can locally open 2 instances and just click host and join, it will work, but if you re trying to play it with a friend, you need to give him your public ip adress which you can find in https://www.whatismyip.com/;
 
-I did use chatgpt to get some understanding of how to do the ball bounce on the ground, I had the idea of how to make it in my head, but not how to code it properly (I wasn't understading the lerp() function;
 
 Ball size varies size on purpose, but it hit the ground at different sizes, i don't see this as a problem because it add some randomness in ball movement;
